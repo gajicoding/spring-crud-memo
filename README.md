@@ -40,7 +40,7 @@
 <table style="border-collapse: collapse; width: 100%;">
   <thead>
     <tr>
-      <th style="width: 400px;">기능</th>
+      <th style="width: 350px;">기능</th>
       <th>Method</th>
       <th>URL</th>
       <th>Request</th>
@@ -49,7 +49,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>메모<br>생성하기</td>
+      <td>메모 생성</td>
       <td>POST</td>
       <td>/api/memos</td>
       <td>
@@ -59,7 +59,7 @@
 }</pre>
       </td>
       <td>
-        <b>201 Created</b>
+        ✅ <b>201 Created</b>
         <pre>{
   "id": 1,
   "title": "string",
@@ -68,12 +68,12 @@
       </td>
     </tr>
     <tr>
-      <td>메모<br>전체 조회</td>
+      <td>메모 전체<br>조회</td>
       <td>GET</td>
       <td>/api/memos</td>
       <td>(없음)</td>
       <td>
-        <b>200 OK</b>
+        ✅ <b>200 OK</b>
         <pre>[
   {
     "id": 1,
@@ -86,22 +86,22 @@
     "content": "string"
   }
 ]</pre>
-        <i>없으면 빈 배열 []</i>
+        🕳️ <i>없으면 빈 배열 []</i>
       </td>
     </tr>
     <tr>
-      <td>메모 단건 조회</td>
+      <td>메모 단건<br>조회</td>
       <td>GET</td>
       <td>/api/memos/{id}</td>
       <td>(없음)</td>
       <td>
-        <b>200 OK</b>
+        ✅ <b>200 OK</b>
         <pre>{
   "id": 1,
   "title": "string",
   "content": "string"
 }</pre>
-        <b>404 Not Found</b><br>해당 식별자의 메모가 없음
+        ❌ <b>404 Not Found</b><br>해당 식별자의 메모가 없음
       </td>
     </tr>
     <tr>
@@ -115,13 +115,14 @@
 }</pre>
       </td>
       <td>
-        <b>200 OK</b>
+        ✅ <b>200 OK</b>
         <pre>{
   "id": 1,
   "title": "string",
   "content": "string"
 }</pre>
-        <b>404 Not Found</b> 또는 <b>400 Bad Request</b>
+        ❌ <b>404 Not Found</b><br>해당 메모가 존재하지 않음<br>
+        ⚠️ <b>400 Bad Request</b><br>필수값 누락
       </td>
     </tr>
     <tr>
@@ -134,13 +135,14 @@
 }</pre>
       </td>
       <td>
-        <b>200 OK</b>
+        ✅ <b>200 OK</b>
         <pre>{
   "id": 1,
   "title": "string",
   "content": "string"
 }</pre>
-        <b>404 Not Found</b> 또는 <b>400 Bad Request</b>
+        ❌ <b>404 Not Found</b><br>해당 메모가 존재하지 않음<br>
+        ⚠️ <b>400 Bad Request</b><br>필수값 누락
       </td>
     </tr>
     <tr>
@@ -149,12 +151,13 @@
       <td>/api/memos/{id}</td>
       <td>(없음)</td>
       <td>
-        <b>200 OK</b><br>
-        <b>404 Not Found</b><br>해당 식별자의 메모가 없음
+        ✅ <b>200 OK</b><br>
+        ❌ <b>404 Not Found</b><br>해당 메모가 존재하지 않음
       </td>
     </tr>
   </tbody>
 </table>
+
 
 
 </details>
