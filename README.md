@@ -49,7 +49,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>메모 생성하기</td>
+      <td>메모<br>생성하기</td>
       <td>POST</td>
       <td>/api/memos</td>
       <td>
@@ -68,7 +68,7 @@
       </td>
     </tr>
     <tr>
-      <td>메모 전체 조회</td>
+      <td>메모<br>전체 조회</td>
       <td>GET</td>
       <td>/api/memos</td>
       <td>(없음)</td>
@@ -105,7 +105,7 @@
       </td>
     </tr>
     <tr>
-      <td>메모 수정 (덮어쓰기)</td>
+      <td>메모 수정<br>(덮어쓰기)</td>
       <td>PUT</td>
       <td>/api/memos/{id}</td>
       <td>
@@ -125,7 +125,7 @@
       </td>
     </tr>
     <tr>
-      <td>메모 제목 수정</td>
+      <td>메모 제목<br>수정</td>
       <td>PATCH</td>
       <td>/api/memos/{id}</td>
       <td>
