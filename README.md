@@ -37,14 +37,14 @@
 <details>
 <summary><strong>HTTP API 설계</strong></summary>
 
-| 기능                      | Method   | URL               | Request                                                   | Response                                                                                                                                                                           |
-|-------------------------| -------- | ----------------- |-----------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 메모<br/>생성<br/>하기        | `POST`   | `/api/memos`      | `{"title": "string", "content": "string"}`          | ✔️ **201 Created**<br/>`{"id": 1, "title": "string", "content": "string"}`                                                                              |
-| 메모<br/>전체<br/>조회<br/>하기 | `GET`    | `/api/memos`      | (없음)                                                      | ✔️ **200 OK**<br>`[{ "id": 1, "title": "string", "content": "string" }, { "id": 2, "title": "string", "content": "string" }]`<br>데이터가 없을 경우:<br>`[]` |
-| 메모<br/>단건<br/>조회<br/>하기 | `GET`    | `/api/memos/{id}` | (없음)                                                      | ✔️ **200 OK**<br>`{"id": 1, "title": "string", "content": "string"}`<br>❌ **404 Not Found**: 해당 식별자의 메모가 존재하지 않는 경우                                    |
-| 메모<br/>수정               | `PUT`    | `/api/memos/{id}` | `{"title": "string", "content": "string"}` | ✔️ **200 OK**<br>`{"id": 1, "title": "string", "content": "string"}`<br>❌ **404 Not Found**: 존재하지 않는 메모<br>❌ **400 Bad Request**: 필수값 누락               |
-| 메모<br/>제목<br/>수정        | `PATCH`  | `/api/memos/{id}` | `{"title": "string"}`                   | ✔️ **200 OK**<br>`{"id": 1, "title": "string", "content": "string"}`<br>❌ **404 Not Found**: 존재하지 않는 메모<br>❌ **400 Bad Request**: 필수값 누락               |
-| 메모<br/>삭제<br/>하기        | `DELETE` | `/api/memos/{id}` | (없음)                                                      | ✔️ **200 OK**<br>❌ **404 Not Found**: 해당 식별자의 메모가 존재하지 않는 경우                                                                                                                       |
+| 기능                     | Method   | URL               | Request                                                   | Response                                                                                                                                                                           |
+|------------------------| -------- | ----------------- |-----------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 메모<br/>생성하기        | `POST`   | `/api/memos`      | `{"title": "string", "content": "string"}`          | ✔️ **201 Created**<br/>`{"id": 1, "title": "string", "content": "string"}`                                                                              |
+| 메모<br/>전체<br/>조회하기 | `GET`    | `/api/memos`      | (없음)                                                      | ✔️ **200 OK**<br>`[{ "id": 1, "title": "string", "content": "string" }, { "id": 2, "title": "string", "content": "string" }]`<br>데이터가 없을 경우:<br>`[]` |
+| 메모<br/>단건<br/>조회하기 | `GET`    | `/api/memos/{id}` | (없음)                                                      | ✔️ **200 OK**<br>`{"id": 1, "title": "string", "content": "string"}`<br>❌ **404 Not Found**: 해당 식별자의 메모가 존재하지 않는 경우                                    |
+| 메모<br/>수정              | `PUT`    | `/api/memos/{id}` | `{"title": "string", "content": "string"}` | ✔️ **200 OK**<br>`{"id": 1, "title": "string", "content": "string"}`<br>❌ **404 Not Found**: 존재하지 않는 메모<br>❌ **400 Bad Request**: 필수값 누락               |
+| 메모<br/>제목수정            | `PATCH`  | `/api/memos/{id}` | `{"title": "string"}`                   | ✔️ **200 OK**<br>`{"id": 1, "title": "string", "content": "string"}`<br>❌ **404 Not Found**: 존재하지 않는 메모<br>❌ **400 Bad Request**: 필수값 누락               |
+| 메모<br/>삭제하기            | `DELETE` | `/api/memos/{id}` | (없음)                                                      | ✔️ **200 OK**<br>❌ **404 Not Found**: 해당 식별자의 메모가 존재하지 않는 경우                                                                                                                       |
 </details>
 
     
