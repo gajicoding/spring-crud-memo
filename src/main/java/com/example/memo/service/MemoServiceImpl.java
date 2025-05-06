@@ -6,6 +6,7 @@ import com.example.memo.entity.Memo;
 import com.example.memo.repository.MemoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -22,9 +23,7 @@ public class MemoServiceImpl implements MemoService {
     public MemoResponseDto saveMemo(MemoRequestDto requestDto) {
         Memo memo = new Memo(requestDto.getTitle(), requestDto.getContents());
 
-        Memo savedMemo = memoRepository.saveMemo(memo);
-
-        return new MemoResponseDto(savedMemo);
+        return memoRepository.saveMemo(memo);
     }
 
     @Override
@@ -34,60 +33,49 @@ public class MemoServiceImpl implements MemoService {
 
     @Override
     public MemoResponseDto findMemoById(Long id) {
-        Memo memo = memoRepository.findMemoById(id);
+        Memo optionalMemo = memoRepository.findMemoByIdOrElseThrow(id);
 
-        // NPE 방지
-        if (memo == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
-        }
-
-        return new MemoResponseDto(memo);
+        return new MemoResponseDto(optionalMemo);
     }
 
+    @Transactional
     @Override
     public MemoResponseDto updateMemo(Long id, String title, String contents) {
-        Memo memo = memoRepository.findMemoById(id);
-
-        if (memo == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
-        }
-
         if (title == null || contents == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The title and content are required values.");
         }
 
-        memo.update(title, contents);
-        memoRepository.updateMemo(id, memo);
+        int updatedRow = memoRepository.updateMemo(id, title, contents);
 
-        return new MemoResponseDto(memo);
+        // 수정된 row 가 0개라면
+        if (updatedRow == 0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No data has been modified.");
+        }
+
+        return new MemoResponseDto(memoRepository.findMemoByIdOrElseThrow(id));
     }
 
+    @Transactional
     @Override
     public MemoResponseDto updateTitle(Long id, String title, String contents) {
-        Memo memo = memoRepository.findMemoById(id);
-
-        if (memo == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
-        }
-
         if (title == null || contents != null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The title is a required value.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The title and content are required values.");
         }
 
-        memo.updateTitle(title);
-        memoRepository.updateMemo(id, memo);
+        int updatedRow = memoRepository.updateTitle(id, title);
+        if (updatedRow == 0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No data has been modified.");
+        }
 
-        return new MemoResponseDto(memo);
+        return new MemoResponseDto(memoRepository.findMemoByIdOrElseThrow(id));
     }
 
     @Override
     public void deleteMemo(Long id) {
-        Memo memo = memoRepository.findMemoById(id);
+        int deletedRow = memoRepository.deleteMemo(id);
 
-        if (memo == null) {
+        if (deletedRow == 0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
         }
-
-        memoRepository.deleteMemo(id);
     }
 }
