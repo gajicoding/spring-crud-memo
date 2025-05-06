@@ -6,13 +6,15 @@ import com.example.memo.entity.Memo;
 import java.util.List;
 
 public interface MemoRepository {
-    Memo saveMemo(Memo memo);
+    MemoResponseDto saveMemo(Memo memo);
 
     List<MemoResponseDto> findAllMemos();
 
-    Memo findMemoById(Long id);
+    Memo findMemoByIdOrElseThrow(Long id);
 
-    void updateMemo(Long id, Memo memo);
+    int updateMemo(Long id, String title, String contents);
 
-    void deleteMemo(Long id);
+    int updateTitle(Long id, String title);
+
+    int deleteMemo(Long id);
 }
